@@ -52,7 +52,7 @@ function nextNewYearTime() {
 
 	function _set() {
 		const now = new Date();
-		console.log("新年时间",newYear.getTime())
+		// console.log("新年时间",newYear.getTime())
 		const nextYearDOM = document.querySelector('#Next-Year-Time');
 		// now.getTime() >= newYear.getTime()
 		if (now.getTime() >= newYear.getTime()) {
