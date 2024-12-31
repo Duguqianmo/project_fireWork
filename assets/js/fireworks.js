@@ -47,7 +47,7 @@ function nextNewYearTime() {
 		//    	<span style="display: inline-block;margin-left: 5px">距离农历乙巳<span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;"> ${NEXT_YEAR_TIME_YEAR} </span>年春节还有</span><div style="font-size: 30px;text-align: center"><span style="font-size: 60%">${pad(days)}天</span>&nbsp;${pad(hours)}:${pad(minutes)}:${pad(seconds)}</div></div>`;
 		return `<div>
            	<span style="display: inline-block;font-size: 20px;margin-left: 5px;margin-bottom: 10px">倒计时</span><br>
-           	<span style="display: inline-block;margin-left: 5px">距离<span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;"> ${NEXT_YEAR_TIME_YEAR + 1} </span>年还有</span><div style="font-size: 30px;text-align: center"><span style="font-size: 60%">${pad(days)}天</span>&nbsp;${pad(hours)}:${pad(minutes)}:${pad(seconds)}</div></div>`;
+           	<span style="display: inline-block;margin-left: 5px">距离<span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;"> ${NEXT_YEAR_TIME_YEAR + 1} </span>年还有</span><div style="font-size: 30px;text-align: center"><span style="font-size: 60%">${pad(days)}天</span>&nbsp;${pad(hours)}:${pad(minutes)}:${pad(seconds-1 === -1 ? '59' : seconds-1)}</div></div>`;
 	}
 
 	function _set() {
@@ -58,7 +58,13 @@ function nextNewYearTime() {
 		if (now.getTime() >= newYear.getTime()) {
 			// 计算一天有多少毫秒
 			if ((now.getTime() - newYear.getTime()) < 1000 * 60 * 60 * 24) {
-				nextYearDOM.innerHTML = `<div style="position: fixed;top: 18%;left: 50%;transform: translate(-50%, calc(-50% - 3px));"><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:1.5em">${NEXT_YEAR_TIME_YEAR}年新春快乐！🎉`;
+				nextYearDOM.innerHTML = `
+					<div style="width:100%;text-align:center;position: fixed;top: 25%;left: 50%;transform: translate(-50%, calc(-50% - 3px));">
+						<div style=""><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:3rem">新年快乐，巳巳如意！</div>
+						<div style="margin-top: 30px;animation: fade-in 0.5s linear;"><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:1.5em">梦虽遥，追则能达；愿虽艰，持则可圆。</div>
+						<div style="margin-top: 10px;"><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:1.5em">河山添锦绣，星光映万家！</div>
+					</div>
+					`;
 			} else {
 				const lunar = calendar.lunar2solar(now.getFullYear(), 1, 1);
 				newYear = new Date(
@@ -103,17 +109,19 @@ function nowTime() {
 	}
 
 	function _set() {
+		// console.log("nowTime",new Date().getSeconds())
 		const now = new Date();
 		const timeDom = document.querySelector('#Now-Time .time');
 		const dateDom = document.querySelector('#Now-Time .date');
-		timeDom.innerHTML = `${pad(now.getHours())} : ${pad(now.getMinutes())}<span> : ${pad(now.getSeconds())}</span>`;
+		timeDom.innerHTML = `${pad(now.getHours())} : ${pad(now.getMinutes())}<span> : ${pad(now.getSeconds() + 2 === 60 ? '00' : now.getSeconds() + 2 === 61 ? '01' : now.getSeconds() + 2)}</span>`;
 		dateDom.textContent = `${now.getFullYear()}年${_getMonthFullName(now.getMonth())}月${pad(now.getDate())}日 , 星期${_getWeekFullName(now.getDay())} `;
 	}
 	_set();
 
 	NOW_TIME_TIMER = setInterval(() => _set(), 1000);
 }
-setTimeout(() => nowTime(), 0);
+nowTime()
+// setTimeout(() => nowTime(), 0);
 
 function setBottomRightButton(toggleMenu) {
 	document.querySelector("#right-bottom-button .parent-button").addEventListener("click", toggleMenu);
