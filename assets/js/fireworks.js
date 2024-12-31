@@ -60,7 +60,7 @@ function nextNewYearTime() {
 			if ((now.getTime() - newYear.getTime()) < 1000 * 60 * 60 * 24) {
 				nextYearDOM.innerHTML = `
 					<div style="width:100%;text-align:center;position: fixed;top: 25%;left: 50%;transform: translate(-50%, calc(-50% - 3px));">
-						<div style=""><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:3rem">新年快乐，巳巳如意！</div>
+						<div style=""><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:2.5rem">新年快乐，巳巳如意！</div>
 						<div style="margin-top: 30px;animation: fade-in 0.5s linear;"><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:1.5em">梦虽遥，追则能达；愿虽艰，持则可圆。</div>
 						<div style="margin-top: 10px;"><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:1.5em">河山添锦绣，星光映万家！</div>
 					</div>
