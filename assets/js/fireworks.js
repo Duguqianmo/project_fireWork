@@ -47,7 +47,7 @@ function nextNewYearTime() {
 		//    	<span style="display: inline-block;margin-left: 5px">距离农历乙巳<span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;"> ${NEXT_YEAR_TIME_YEAR} </span>年春节还有</span><div style="font-size: 30px;text-align: center"><span style="font-size: 60%">${pad(days)}天</span>&nbsp;${pad(hours)}:${pad(minutes)}:${pad(seconds)}</div></div>`;
 		return `<div>
            	<span style="display: inline-block;font-size: 20px;margin-left: 5px;margin-bottom: 10px">倒计时</span><br>
-           	<span style="display: inline-block;margin-left: 5px">距离<span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;"> ${NEXT_YEAR_TIME_YEAR + 1} </span>年还有</span><div style="font-size: 30px;text-align: center"><span style="font-size: 60%">${pad(days)}天</span>&nbsp;${pad(hours)}:${pad(minutes)}:${pad(seconds-1 === -1 ? '59' : seconds-1)}</div></div>`;
+           	<span style="display: inline-block;margin-left: 5px">距离<span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;"> ${NEXT_YEAR_TIME_YEAR + 1} </span>年还有</span><div style="font-size: 30px;text-align: center"><span style="font-size: 60%">${pad(days)}天</span>&nbsp;${pad(hours)}:${pad(minutes)}:${pad(seconds+1 === 60 ? '60' : seconds+1)}</div></div>`;
 	}
 
 	function _set() {
@@ -113,7 +113,7 @@ function nowTime() {
 		const now = new Date();
 		const timeDom = document.querySelector('#Now-Time .time');
 		const dateDom = document.querySelector('#Now-Time .date');
-		timeDom.innerHTML = `${pad(now.getHours())} : ${pad(now.getMinutes())}<span> : ${pad(now.getSeconds() + 2 === 60 ? '00' : now.getSeconds() + 2 === 61 ? '01' : now.getSeconds() + 2)}</span>`;
+		timeDom.innerHTML = `${pad(now.getHours())} : ${pad(now.getMinutes())}<span> : ${pad(now.getSeconds())}</span>`;
 		dateDom.textContent = `${now.getFullYear()}年${_getMonthFullName(now.getMonth())}月${pad(now.getDate())}日 , 星期${_getWeekFullName(now.getDay())} `;
 	}
 	_set();
