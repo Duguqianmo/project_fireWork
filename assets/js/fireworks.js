@@ -55,7 +55,7 @@ function nextNewYearTime() {
 		// console.log("新年时间",newYear.getTime())
 		const nextYearDOM = document.querySelector('#Next-Year-Time');
 		// now.getTime() >= newYear.getTime()
-		if (now.getTime() >= newYear.getTime()) {
+		if (1767196800000 >= newYear.getTime()) {
 			// 计算一天有多少毫秒
 			if ((now.getTime() - newYear.getTime()) < 1000 * 60 * 60 * 24) {
 				nextYearDOM.innerHTML = `
