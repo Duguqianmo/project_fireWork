@@ -1,8 +1,8 @@
 let LOADING_POINT_TIMER = null;
 let NEXT_YEAR_TIMER = null;
 let NEXT_YEAR_TIME_YEAR = new Date().getFullYear();	// 年份
-let NEXT_YEAR_TIME_MONTH = 2;	// 农历月份
-let NEXT_YEAR_TIME_DAY = 10;	// 农历日
+let NEXT_YEAR_TIME_MONTH = 1;	// 农历月份
+let NEXT_YEAR_TIME_DAY = 29;	// 农历日
 let NOW_TIME_TIMER = null;		// 农历时间
 
 function setLoadingPoint() {
@@ -36,33 +36,32 @@ function nextNewYearTime() {
 
 	function _getNewYearTime() {
 		const now = new Date();
-		const diff = newYear.getTime() - now.getTime();
+		// const diff = newYear.getTime() - now.getTime();
+		const diff = 1738080000000 - now.getTime();
 		const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 		const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 		const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 		const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-		// return `<div>
-		//    	<span style="display: inline-block;font-size: 20px;margin-left: 5px;margin-bottom: 10px">倒计时</span><br>
-		//    	<span style="display: inline-block;margin-left: 5px">距离农历乙巳<span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;"> ${NEXT_YEAR_TIME_YEAR} </span>年春节还有</span><div style="font-size: 30px;text-align: center"><span style="font-size: 60%">${pad(days)}天</span>&nbsp;${pad(hours)}:${pad(minutes)}:${pad(seconds)}</div></div>`;
 		return `<div>
-           	<span style="display: inline-block;font-size: 20px;margin-left: 5px;margin-bottom: 10px">倒计时</span><br>
-           	<span style="display: inline-block;margin-left: 5px">距离<span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;"> ${NEXT_YEAR_TIME_YEAR + 1} </span>年还有</span><div style="font-size: 30px;text-align: center"><span style="font-size: 60%">${pad(days)}天</span>&nbsp;${pad(hours)}:${pad(minutes)}:${pad(seconds+1 === 60 ? '60' : seconds+1)}</div></div>`;
+		   	<span style="display: inline-block;font-size: 20px;margin-left: 5px;margin-bottom: 10px">倒计时</span><br>
+		   	<span style="display: inline-block;margin-left: 5px">距离农历乙巳<span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;"> ${NEXT_YEAR_TIME_YEAR} </span>年春节还有</span><div style="font-size: 30px;text-align: center"><span style="font-size: 60%">${pad(days)}天</span>&nbsp;${pad(hours)}:${pad(minutes)}:${pad(seconds+1 === 60 ? '60' : seconds+1)}</div></div>`;
 	}
 
 	function _set() {
 		const now = new Date();
-		// console.log("新年时间",newYear.getTime())
+		console.log("新年时间",now.getTime())
 		const nextYearDOM = document.querySelector('#Next-Year-Time');
 		// now.getTime() >= newYear.getTime()
-		if (1767196800000 >= newYear.getTime()) {
+		if (now.getTime() >= 1738080000000) {
 			// 计算一天有多少毫秒
 			if ((now.getTime() - newYear.getTime()) < 1000 * 60 * 60 * 24) {
 				nextYearDOM.innerHTML = `
 					<div style="width:100%;text-align:center;position: fixed;top: 25%;left: 50%;transform: translate(-50%, calc(-50% - 3px));">
-						<div style=""><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:2.5rem">新年快乐，巳巳如意！</div>
+						<div style=""><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:2.5rem">恭祝全球华人新春快乐！</div>
 						<div style="margin-top: 30px;animation: fade-in 0.5s linear;"><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:1.5em">梦虽遥，追则能达；愿虽艰，持则可圆。</div>
 						<div style="margin-top: 10px;"><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:1.5em">河山添锦绣，星光映万家！</div>
+						<div style="margin-top: 10px;"><span style="background: linear-gradient(to left, #F44336, #FF9800);-webkit-background-clip: text;color: transparent;text-shadow: none;font-size:1.5em">巳巳如意，生生不息！</div>
 					</div>
 					`;
 			} else {
