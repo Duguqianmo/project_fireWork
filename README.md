@@ -41,13 +41,16 @@
 
 ### 修改倒计时目标时间
 
-打开 `index.html` 文件，找到这段代码（大约在第1067行）：
+打开 `config.js` 文件，找到这段代码：
 
 ```javascript
 window.configData = {
-    // 调试时间：用于测试，格式：YYYY/MM/DD HH:mm:ss
-    debugTime: "2025/12/31 23:59:30",
-    
+    // 调试时间：用于模拟跨年效果，格式：YYYY/MM/DD HH:mm:ss
+    // 如果设置了此值，系统会使用此时间作为当前时间进行倒计时
+    // 例如：设置为 "2025/12/31 23:59:00" 可以模拟距离跨年还有1分钟
+    // 设置为 null 或空字符串则使用系统当前时间
+    debugTime: null,
+
     // 倒计时目标时间
     countdownTargetTime: "2026/01/01 00:00:00",
     // ...
@@ -64,7 +67,7 @@ window.configData = {
 
 ### 修改祝福文字
 
-在同一个位置，找到：
+在 `config.js` 文件中，找到：
 
 ```javascript
 // 倒计时文本（倒计时结束后显示）
@@ -211,14 +214,14 @@ fireworkText: [
 
 ### Q4: 怎么修改祝福文字？
 **A:** 
-1. 打开 `index.html` 文件
+1. 打开 `config.js` 文件
 2. 找到 `countdownText` 和 `fireworkText` 这两行
 3. 修改成你想要的内容
 4. 保存文件，刷新浏览器页面
 
 ### Q5: 怎么快速测试效果？
 **A:** 
-1. 打开 `index.html`，找到 `debugTime`
+1. 打开 `config.js` 文件，找到 `debugTime`
 2. 设置成接近目标时间，比如：
    - 目标时间是 `2026/01/01 00:00:00`
    - 设置 `debugTime: "2025/12/31 23:59:30"`
