@@ -7,10 +7,11 @@ window.configData = {
     debugTime: null,
 
     // 倒计时目标时间
-    countdownTargetTime: "2026/01/01 00:00:00",
+    countdownTargetTime: "2026/02/17 00:00:00",
     // 倒计时文本
     countdownText: [
-        "${year} Happy New Year!"
+        "恭祝全球华人新年快乐！",
+        "${year} 骐骥驰骋!"
     ],
     // 烟花祝福文本
     fireworkText: [
@@ -33,5 +34,6 @@ window.configData = {
         "心情愉快"
     ]
 };
+
 
 
